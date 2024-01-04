@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ButtonGrid.Models.ButtonModel>
+
+    <!--td= table data-->
+    <!--td= table header-->
+
+ 
+<style>
+        .game-button{
+            width:74px;
+            text-align:center;
+            border:none;
+        }
+
+        .game-button-image{
+            width:70%
+        }
+
+        .button-zone{
+            display:flex;
+            flex-wrap:wrap;
+        }
+
+        .line-break{
+            flex-basis:100%;
+            height:0;
+        }
+
+        .button-label{
+            font-size:8px;
+            text-align:center;
+        }
+</style>
+
+@{
+    string[] imagenames = { "buttonGreen.png", "buttonRed.png", "buttonTeal.png", "buttonYellow.png" };
+}
+
+<!--Durch das From wird dieser Teil interaktiv-->
+<form>
+
+        <div class="button-zone">
+
+
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                // start new line every five elements
+                if (i % 5 == 0)
+                {
+                    <div class="line-break"> </div>
+                }
+                    <div>
+                        <!-- der asp-controller sagt welcher teil von den controllern zuhört-->
+                <button class="game-button" name="buttonNumber" value="@Model.ElementAt(i).Id" type="submit" asp-controller="button" asp-action="HandleButtonClick">
+                            <!--show the proper image according to the button state property-->
+                            <img class="game-button-image" src="~/img/@imagenames[Model.ElementAt(i).ButtonState]"/>
+
+                            <!--zeigt button farbe als nummer und positionsnummer im grid-->
+                            <div>
+                                @Model.ElementAt(i).Id, @Model.ElementAt(i).ButtonState
+                            </div>
+                        </button>
+                    </div>
+            }
+        </div>
+</form>
