@@ -21,8 +21,11 @@
                 "buttonNumber" : buttonNumber
             },
             success: function (data) {
+
+                // data should be a json object with part1 and part2, return value of the button controller.
                 console.log(data);
-                $('#' + buttonNumber).html(data);
+                $('#' + buttonNumber).html(data.part1);
+                $('#messageArea').html(data.part2);
             }
         })
     }
