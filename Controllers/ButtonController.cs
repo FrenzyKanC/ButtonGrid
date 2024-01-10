@@ -28,5 +28,13 @@ namespace ButtonGrid.Controllers
 
             return View("index", buttons);
         }
+
+        public IActionResult ShowOneButton(int buttonNumber) 
+        {
+            // add one to the button state. if >4, then reset to 0
+            buttons.ElementAt(buttonNumber).ButtonState = (buttons.ElementAt(buttonNumber).ButtonState + 1) % 4;
+
+            return PartialView(buttons.ElementAt(buttonNumber));
+        }
     }
 }

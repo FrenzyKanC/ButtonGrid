@@ -31,7 +31,9 @@
         }
 </style>
 
+
 @{
+    // store image names in an array for more efficent code
     string[] imagenames = { "buttonGreen.png", "buttonRed.png", "buttonTeal.png", "buttonYellow.png" };
 }
 
@@ -48,9 +50,9 @@
                 {
                     <div class="line-break"> </div>
                 }
-                    <div>
+                    <div class="oneButton" id=@i>
                         <!-- der asp-controller sagt welcher teil von den controllern zuhört-->
-                <button class="game-button" name="buttonNumber" value="@Model.ElementAt(i).Id" type="submit" asp-controller="button" asp-action="HandleButtonClick">
+                         <button class="game-button" name="buttonNumber" value="@Model.ElementAt(i).Id" type="submit" asp-controller="button" asp-action="HandleButtonClick">
                             <!--show the proper image according to the button state property-->
                             <img class="game-button-image" src="~/img/@imagenames[Model.ElementAt(i).ButtonState]"/>
 

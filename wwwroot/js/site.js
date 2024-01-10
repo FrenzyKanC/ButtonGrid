@@ -1,4 +1,26 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(function () {
+    console.log("JS Ready Check: Erfolgreich :)");
 
-// Write your JavaScript code.
+    $(".game-button").click(function (event) {
+        event.preventDefault();
+
+        // der 'var buttonNumber = $(this).val();' Wert kommt vom Index oneButton
+        var buttonNumber = $(this).val();
+        console.log("button" + buttonNumber + " was clicked");
+        doButtonUpdate(buttonNumber);
+    })
+
+    function doButtonUpdate(buttonNumber) {
+        $.ajax({
+            dataType: "json",
+            method: 'POST',
+            url: '/button/ShowOneButton',
+            data: {
+                "buttonNumber": buttonNumber
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    }
+})
