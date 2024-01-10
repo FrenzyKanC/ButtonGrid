@@ -22,9 +22,9 @@ namespace ButtonGrid.Controllers
         public IActionResult HandleButtonClick(string buttonNumber)
         {
             // convert from string to int
-            int bn = int.Parse(buttonNumber);
+            int bN = int.Parse(buttonNumber);
 
-            buttons.ElementAt(bn).ButtonState = (buttons.ElementAt(bn).ButtonState + 1) % 4;
+            buttons.ElementAt(bN).ButtonState = (buttons.ElementAt(bN).ButtonState + 1) % 4;
 
             return View("index", buttons);
         }

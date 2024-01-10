@@ -37,12 +37,10 @@
     string[] imagenames = { "buttonGreen.png", "buttonRed.png", "buttonTeal.png", "buttonYellow.png" };
 }
 
-<!--Durch das From wird dieser Teil interaktiv-->
+<!--Durch das Form wird dieser Teil interaktiv-->
+<p>Kontrollzeit Ajax: @DateTime.Now</p>
 <form>
-
         <div class="button-zone">
-
-
             @for (int i = 0; i < Model.Count(); i++)
             {
                 // start new line every five elements
@@ -52,13 +50,13 @@
                 }
                     <div class="oneButton" id=@i>
                         <!-- der asp-controller sagt welcher teil von den controllern zuhört-->
-                         <button class="game-button" name="buttonNumber" value="@Model.ElementAt(i).Id" type="submit" asp-controller="button" asp-action="HandleButtonClick">
+                        <button class="game-button" type="submit" value="@Model.ElementAt(i).Id" name="buttonNumber" asp-controller="Button" asp-action="HandleButtonClick">
                             <!--show the proper image according to the button state property-->
                             <img class="game-button-image" src="~/img/@imagenames[Model.ElementAt(i).ButtonState]"/>
-
                             <!--zeigt button farbe als nummer und positionsnummer im grid-->
-                            <div>
-                                @Model.ElementAt(i).Id, @Model.ElementAt(i).ButtonState
+                            <div class="button-label">
+                                @Model.ElementAt(i).Id, 
+                                @Model.ElementAt(i).ButtonState
                             </div>
                         </button>
                     </div>

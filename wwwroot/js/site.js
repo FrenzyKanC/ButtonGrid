@@ -1,7 +1,9 @@
 ﻿$(function () {
     console.log("JS Ready Check: Erfolgreich :)");
 
-    $(".game-button").click(function (event) {
+    // hier wird verhindert, dass beim ersetzen eines teil-objects den original click listener
+    // document = ganze page, .game-button = wird zum listener
+    $(document).on("click",".game-button", function (event) {
         event.preventDefault();
 
         // der 'var buttonNumber = $(this).val();' Wert kommt vom Index oneButton
@@ -12,14 +14,15 @@
 
     function doButtonUpdate(buttonNumber) {
         $.ajax({
-            dataType: "json",
+            datatype: "json",
             method: 'POST',
             url: '/button/ShowOneButton',
             data: {
-                "buttonNumber": buttonNumber
+                "buttonNumber" : buttonNumber
             },
             success: function (data) {
                 console.log(data);
+                $('#' + buttonNumber).html(data);
             }
         })
     }

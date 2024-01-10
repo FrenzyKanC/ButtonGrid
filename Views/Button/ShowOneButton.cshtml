@@ -5,13 +5,11 @@
     string[] imagenames = { "buttonGreen.png", "buttonRed.png", "buttonTeal.png", "buttonYellow.png" };
 }
 
-<!-- der asp-controller sagt welcher teil von den controllern zuhört-->
-<button class="game-button" name="buttonNumber" value="@Model.Id" type="submit" asp-controller="button" asp-action="HandleButtonClick">
-    <!--show the proper image according to the button state property-->
-    <img class="game-button-image" src="~/img/@imagenames[Model.ButtonState]" />
 
-    <!--zeigt button farbe als nummer und positionsnummer im grid-->
-    <div>
-        @Model.Id, @Model.ButtonState
+<button class="game-button" type="submit" value="@Model.Id" name="buttonNumber" asp-controller="Button" asp-action="HandleButtonClick">
+    <img class="game-button-image" src="~/img/@imagenames[Model.ButtonState]" />
+    <div class="button-label">
+        @Model.Id,
+        @Model.ButtonState
     </div>
 </button>
